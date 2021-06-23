@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+    <div class="form-group">
+
+      <label for="product">Produto</label>
+      <select class="form-control" id="product" formControlName="product">
+        <option *ngFor="let produto of produtos" value="{{produto.id}}">{{produto.name}}</option>
+      </select>
+
+      <label for="quantity">Quantidade</label>
+      <input formControlName="quantity" number="number" class="form-control" id="quantity">
+
+      <div class="buttonForm">
+        <button mdbBtn type="button" color="success" (click)="salvar()">Salvar</button>
+        <button mdbBtn type="button" color="danger" (click)="cancelar()">Cancelar</button>
+      </div>
+
+    </div>
+</form>

@@ -1,0 +1,24 @@
+<form [formGroup]="form">
+  <div class="form-group">
+
+    <label for="product">Produto</label>
+    <select class="form-control" id="product" formControlName="product">
+      <option *ngFor="let produto of produtos" value="{{produto.id}}">{{produto.name}}</option>
+    </select>
+
+    <label for="quantity">Quantidade</label>
+    <input formControlName="quantity" number="number" class="form-control" id="quantity">
+
+    <label for="client_name">Nome do Cliente</label>
+    <input formControlName="client_name" number="text" class="form-control" id="client_name">
+
+    <label for="price">Valor Total da Venda</label>
+    <input formControlName="price" number="text" class="form-control" id="price" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+
+    <div class="buttonForm">
+      <button mdbBtn type="button" color="success" (click)="salvar()">Salvar</button>
+      <button mdbBtn type="button" color="danger" (click)="cancelar()">Cancelar</button>
+    </div>
+
+  </div>
+</form>

@@ -9,11 +9,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PagesComponent } from './home/pages/pages.component';
-import { EditComponent } from './home/pages/edit/edit.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './_services/interceptor/httpLoading.service';
 import { DatePipe } from '@angular/common';
 import { CurrencyFormatPipe } from './currencyformat/currency-format.pipe';
+import { EditProdutosComponent } from './home/pages/edit/produtos/edit.component';
+import { EditVendasComponent } from './home/pages/edit/vendas/edit.component';
+import { EditRecebimentosComponent } from './home/pages/edit/recebimentos/edit.component';
+import { EditUsuariosComponent } from './home/pages/edit/usuarios/edit.component';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
   declarations: [
@@ -21,8 +25,11 @@ import { CurrencyFormatPipe } from './currencyformat/currency-format.pipe';
     LoginComponent,
     HomeComponent,
     PagesComponent,
-    EditComponent,
-    CurrencyFormatPipe
+    CurrencyFormatPipe,
+    EditProdutosComponent,
+    EditVendasComponent,
+    EditRecebimentosComponent,
+    EditUsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,8 @@ import { CurrencyFormatPipe } from './currencyformat/currency-format.pipe';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CurrencyMaskModule
   ],
   providers: [
     {

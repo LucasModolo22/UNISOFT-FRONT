@@ -2,6 +2,11 @@
 
   <button type="button" class="buttonTop btn btn-success" (click)="adicionar()"><mdb-icon fas icon="plus" class="prefix icon"></mdb-icon> Adicionar {{typeCampo}}</button>
 
+  <app-edit-produtos class="janela produtos animate__animated animate__zoomIn" *ngIf="produtoJanela"></app-edit-produtos>
+  <app-edit-vendas class="janela vendas animate__animated animate__zoomIn" *ngIf="vendaJanela"></app-edit-vendas>
+  <app-edit-recebimentos class="janela recebimentos animate__animated animate__zoomIn" *ngIf="recebimentoJanela"></app-edit-recebimentos>
+  <app-edit-usuarios class="janela usuarios animate__animated animate__zoomIn" *ngIf="usuarioJanela"></app-edit-usuarios>
+
   <div class="md-form">
     <input type="text" (input)="search($event)" class="form-control" id="search" mdbInput/>
     <label for="search">Pesquisar</label>
@@ -25,7 +30,7 @@
             <td>{{produto.description}}</td>
             <td>{{produto.quantity}}</td>
             <td class="options">
-                <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
+                <!-- <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon> -->
                 <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(produto.id)"></mdb-icon>
             </td>
           </tr>
@@ -109,7 +114,7 @@
             <td>{{usuario.surname}}</td>
             <td>{{usuario.email}}</td>
             <td class="options">
-                <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
+                <!-- <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon> -->
                 <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(usuario.id)" *ngIf="usuario.username != username"></mdb-icon>
             </td>
           </tr>
@@ -117,5 +122,3 @@
       </table>
   </div>
 </div>
-
-<!-- <app-edit class="janela animate__animated animate__zoomIn"></app-edit> -->

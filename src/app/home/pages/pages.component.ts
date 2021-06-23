@@ -20,6 +20,11 @@ export class PagesComponent implements OnInit, OnChanges {
   recebimentos = []
   usuarios = []
 
+  produtoJanela = false
+  vendaJanela = false
+  recebimentoJanela = false
+  usuarioJanela = false
+
   swalOpcoes: any = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -30,9 +35,9 @@ export class PagesComponent implements OnInit, OnChanges {
   
   swalToast: any = Swal.mixin({
     toast: true,
-    position: 'bottom-end',
+    position: 'top-end',
     showConfirmButton: false,
-    timer: 3000,
+    timer: 5000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -138,10 +143,20 @@ export class PagesComponent implements OnInit, OnChanges {
   }
 
   adicionar(){
-    this.swalToast.fire({
-      icon: 'success',
-      title: 'Item adicionado com sucesso!'
-    })
+    switch (this.type) {
+      case "produtos":
+        this.produtoJanela = true
+        break;
+      case "vendas":
+        this.vendaJanela = true
+        break;
+      case "recebimentos":
+        this.recebimentoJanela = true
+        break;
+      case "usuarios":
+        this.usuarioJanela = true
+        break;
+    }
   }
 
   nenhumItemEncontrado(){

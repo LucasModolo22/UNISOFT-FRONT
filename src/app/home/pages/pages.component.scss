@@ -56,10 +56,30 @@ table{
 .janela{
     width: 50vw;
 	height: 80vh;
-    border-radius: 2%;
+
+    &.produtos{
+        width: 50vw;
+	    height: 50vh
+    }
+    &.vendas{
+        width: 50vw;
+	    height: 50vh
+    }
+    &.recebimentos{
+        width: 50vw;
+	    height: 30vh
+    }
+    &.usuarios{
+        width: 50vw;
+	    height: 60vh
+    }
+
+    border-radius: 1%;
     border: 1px solid white;
     padding: 1rem;
     background: #ffffff;
+
+    z-index: 999;
     
     overflow: auto;
 	position: absolute;

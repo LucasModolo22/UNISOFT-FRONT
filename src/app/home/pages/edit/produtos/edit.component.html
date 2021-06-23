@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+    <div class="form-group">
+      <label for="name">Produto</label>
+      <input formControlName="name" type="text" class="form-control" id="name">
+
+      <label for="description">Descrição</label>
+      <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+
+      <label for="quantity">Quantidade</label>
+      <input formControlName="quantity" type="number" class="form-control" id="quantity">
+
+      <div class="buttonForm">
+        <button mdbBtn type="button" color="success" (click)="salvar()">Salvar</button>
+        <button mdbBtn type="button" color="danger" (click)="cancelar()">Cancelar</button>
+      </div>
+    </div>
+</form>
