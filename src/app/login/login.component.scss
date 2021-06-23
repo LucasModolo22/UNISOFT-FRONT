@@ -1,0 +1,36 @@
+@import '../../assets/scss/main.scss';
+
+.main{
+    margin: 0 auto;
+    width: 50%;
+    height: 75%;
+    margin-left: 25%;
+    margin-top: 5%;
+    padding: 1%;
+    border-radius: 1%;
+    background: white;
+    position: relative;
+}
+
+.logo{
+    margin-top: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.form{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.button{
+    margin-top: 10%;
+    text-align: center;
+    * {
+        font-size: 1.1rem;
+    }
+}

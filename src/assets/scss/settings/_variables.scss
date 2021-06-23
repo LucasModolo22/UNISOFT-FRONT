@@ -1,0 +1,70 @@
+/*Colors*/
+$c-primary:#004a85;
+
+$c-secondary:#212121;
+$c-terciary: #ebebeb;
+$c-black: #000;
+$c-white: #fff;
+$c-text-primary: #3D3D3D;
+$c-text-primary-dark: #252525;
+
+$c-text-secondary: #d3d3d3;
+$c-text-secondary-light: #d6d6d6;
+
+$c-text-terciary: #979797;
+
+$c-succsses: #2a9e38;
+$c-bg-secondary: #2ED799;
+$c-danger: #dc3545;
+$c-3:#F2F6FC;
+
+$c-edit: #51afc5;
+$c-remove: #ca5447;
+
+
+/*Font*/
+$f-default: 'HelveticaNowDisplay-Regular';
+$f-secondary: 'HelveticaNowDisplay-ExtBlk';
+$f-terciary: 'HelveticaNowDisplay-Light';
+$f-quarterly: 'MyriadPro';
+
+// $f-default: 'Calibri';
+// $f-secondary: 'MyriadPro';
+// $f-terciary: 'Lietome';
+
+/*Mixins*/
+
+@mixin container {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+@mixin wrapper {
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: auto;
+
+  padding: 2rem;
+
+  @include scroll;
+}
+
+@mixin scroll {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $c-text-primary; 
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $c-primary; 
+  }
+}

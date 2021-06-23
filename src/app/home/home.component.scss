@@ -1,0 +1,78 @@
+@import '../../styles.scss';
+
+.home{
+    display: grid;
+    grid-template-columns: 10% 90%;
+    // grid-template-rows: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+
+    .menu{
+        background: $c-secondary;
+        .user{
+            height: 20vh;
+            width: 100%;
+            background: $c-black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            text-align: center;
+            justify-content: center;
+
+            .icon{
+                &.profile{
+                    font-size: 2.5rem;
+                }
+                &.logout{
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                }
+            }
+
+            .name{
+                font-size: 1.2rem;
+                word-wrap: break-word;
+            }
+        }
+       .botoes{
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+
+            .bloco{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-align: center;
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                transition: all .35s;
+
+                &:hover{
+                    background: $c-primary;
+                }
+
+                .icon{
+                    font-size: 2.5rem;
+                }
+
+                .title{
+                    font-size: 1.2rem;
+                }
+            }
+       }
+    }
+
+    .page{
+        background: $c-terciary;
+        padding: 3%;
+    }
+
+
+}

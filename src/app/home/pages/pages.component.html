@@ -1,0 +1,117 @@
+<div class="pages">
+  <input class="form-control mr-sm-2 search" type="text" placeholder="Pesquisar">
+
+  <button type="button" class="buttonTop btn btn-success" (click)="adicionar()"><mdb-icon fas icon="plus" class="prefix icon"></mdb-icon> Adicionar {{typeCampo}}</button>
+
+  <div class="page" *ngIf="[type] == 'produtos'">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col" class="optionsTh">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produto of produtos">
+            <th scope="row">{{produto.id}}</th>
+            <td>{{produto.name}}</td>
+            <td>{{produto.description}}</td>
+            <td>{{produto.quantity}}</td>
+            <td class="options">
+                <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
+                <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(produto.id)"></mdb-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="page" *ngIf="[type] == 'vendas'">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Valor da Compra</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Comprador</th>
+            <th scope="col">Data da Venda</th>
+            <th scope="col" class="optionsTh">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let venda of vendas">
+            <th scope="row">{{venda.id}}</th>
+            <td>{{venda.product.name}}</td>
+            <td>{{venda.price}}</td>
+            <td>{{venda.quantity}}</td>
+            <td>{{venda.client_name}}</td>
+            <td>{{venda.date | date: "MM/dd/yy 'às' hh:mm:ss":"BRL"}}</td>
+            <td class="options">
+                <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
+                <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(venda.id)"></mdb-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="page" *ngIf="[type] == 'recebimentos'">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Data do Recebimento</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col" class="optionsTh">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let recebimento of recebimentos">
+            <th scope="row">{{recebimento.id}}</th>
+            <td>{{recebimento.product.name}}</td>
+            <td>{{recebimento.date | date: "MM/dd/yy 'às' hh:mm:ss":"BRL"}}</td>
+            <td>{{recebimento.quantity}}</td>
+            <td class="options">
+                <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
+                <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(recebimento.id)"></mdb-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="page" *ngIf="[type] == 'usuarios'">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Usuário</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">Email</th>
+            <th scope="col" class="optionsTh">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios">
+            <th scope="row">{{usuario.id}}</th>
+            <td>{{usuario.username}}</td>
+            <td>{{usuario.name}}</td>
+            <td>{{usuario.surname}}</td>
+            <td>{{usuario.email}}</td>
+            <td class="options">
+                <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
+                <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(usuario.id)"></mdb-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+
+<!-- <app-edit class="janela animate__animated animate__zoomIn"></app-edit> -->

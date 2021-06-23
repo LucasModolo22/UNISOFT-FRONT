@@ -1,0 +1,25 @@
+<section class="main shadow-lg p-3 mb-5 bg-white rounded">
+    <img src="../../assets/img/logo.png" class="logo">
+
+
+    <form [formGroup]="validationForm" class="form">
+        <div class="md-form">
+          <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+          <input mdbInput mdbValidate formControlName="username" minLength="3" maxLength="64" type="text" class="form-control" id="form9">
+          <label for="form9">Digite seu nome de usuário</label>
+          <mdb-error *ngIf="username.invalid && (username.dirty || username.touched)">Usuário Inválido</mdb-error>
+        </div>
+      
+        <div class="md-form">
+          <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+          <input mdbInput mdbValidate formControlName="pwd" minLength="4" maxLength="25" type="password" class="form-control" id="form10">
+          <label for="form10">Digite sua senha</label>
+          <mdb-error *ngIf="pwd.invalid && (pwd.dirty || pwd.touched)">Senha Inválida</mdb-error>
+        </div>
+
+        <div class="button">
+            <button type="button" mdbBtn color="dark" mdbWavesEffect (click)="login()">Entrar</button>
+        </div>
+      </form>
+    
+</section>

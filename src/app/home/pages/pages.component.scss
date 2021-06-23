@@ -1,0 +1,68 @@
+@import '../../../styles.scss';
+
+.search{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.buttonTop{
+    margin-bottom: 1%;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+table{
+
+    thead{
+        background: $c-secondary !important;
+    }
+
+    .optionsTh{
+        text-align: center;
+    }
+
+    .options{
+        display: flex;
+        justify-content: center;
+        .icon{
+            color: $c-white;
+            padding: 0.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: 0.15rem;
+            margin-right: 0.15rem;
+            
+            &.edit{
+                background: $c-edit;
+            }
+
+            &.remove{
+                background: $c-remove;
+            }
+
+            &:hover{
+                cursor: pointer;
+                color: $c-black;
+            }
+        }
+    }
+    
+}
+
+.janela{
+    width: 50vw;
+	height: 80vh;
+    border-radius: 2%;
+    border: 1px solid white;
+    padding: 1rem;
+    background: #ffffff;
+    
+    overflow: auto;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
+}

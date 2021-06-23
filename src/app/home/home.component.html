@@ -1,0 +1,32 @@
+<section class="home">
+    <section class="menu">
+        <div class="user">
+            <div class="info">
+                <mdb-icon fas icon="user" class="prefix icon profile"></mdb-icon>
+                <p class="name">Nome</p>
+            </div>
+            <mdb-icon fas icon="sign-out-alt" class="prefix icon logout" title="Deslogar" (click)="deslogar()"></mdb-icon>
+        </div>
+        <div class="botoes">
+            <div class="bloco" [ngStyle]="{'background': produtos ? '#004a85' : '#212121'}" (click)="changePage('/home/produtos')">
+                <mdb-icon fas icon="desktop" class="prefix icon"></mdb-icon>
+                <p class="title">Produtos</p>
+            </div>
+            <div class="bloco" [ngStyle]="{'background': vendas ? '#004a85' : '#212121'}" (click)="changePage('/home/vendas')">
+                <mdb-icon fas icon="shopping-cart" class="prefix icon"></mdb-icon>
+                <p class="title">Vendas</p>
+            </div>
+            <div class="bloco" [ngStyle]="{'background': recebimentos ? '#004a85' : '#212121'}" (click)="changePage('/home/recebimentos')">
+                <mdb-icon fas icon="truck-loading" class="prefix icon"></mdb-icon>
+                <p class="title">Recebimentos</p>
+            </div>
+            <div class="bloco" [ngStyle]="{'background': usuarios ? '#004a85' : '#212121'}" (click)="changePage('/home/usuarios')">
+                <mdb-icon fas icon="users" class="prefix icon"></mdb-icon>
+                <p class="title">Usuários</p>
+            </div>
+        </div>
+    </section>
+    <section class="page">
+       <app-home-pages [type]="type"></app-home-pages>
+    </section>
+</section>
