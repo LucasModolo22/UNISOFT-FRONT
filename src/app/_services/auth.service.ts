@@ -18,6 +18,7 @@ export class AuthService {
       this.http.post<any>(`${environment.apiUrl}/user/login`, login).subscribe(data => {
         // if (data.type != 'usuarioPainel') return Swal.fire('Erro!', 'Login inválido.', 'error')
         localStorage.setItem('currentUser', data.token)
+        localStorage.setItem("username", data.result.username)
         this.router.navigate(['/home'])
         return
       })
@@ -26,6 +27,7 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("username");
     localStorage.clear();
     this.router.navigate(['/'])
   }

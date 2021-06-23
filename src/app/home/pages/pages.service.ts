@@ -11,11 +11,12 @@ export class PagesService {
     private http: HttpClient
   ) { }
 
-  loadProdutos(){
-    return this.http.get<any>(`${environment.apiUrl}/product`)
-  }
   deleteItem(id, apiRota){
     return this.http.delete<any>(`${environment.apiUrl}/${apiRota}/${id}`)
+  }
+
+  loadProdutos(){
+    return this.http.get<any>(`${environment.apiUrl}/product`)
   }
 
   loadVendas(){

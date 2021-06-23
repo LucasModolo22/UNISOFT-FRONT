@@ -29,9 +29,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
     return next.handle(newReq).pipe(
       catchError(err => {
-        if (err.status == 404) {
+        if (err.status == 401) {
           this.authService.logout()
-          Swal.fire('Erro!', 'Usuário ou senha inválidos! Tente novamente.', 'error')
           return throwError(err)
         }
         console.log(err)

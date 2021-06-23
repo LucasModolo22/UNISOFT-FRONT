@@ -1,23 +1,27 @@
 <div class="pages">
-  <input class="form-control mr-sm-2 search" type="text" placeholder="Pesquisar">
 
   <button type="button" class="buttonTop btn btn-success" (click)="adicionar()"><mdb-icon fas icon="plus" class="prefix icon"></mdb-icon> Adicionar {{typeCampo}}</button>
 
+  <div class="md-form">
+    <input type="text" (input)="search($event)" class="form-control" id="search" mdbInput/>
+    <label for="search">Pesquisar</label>
+  </div>
+
   <div class="page" *ngIf="[type] == 'produtos'">
-    <table class="table table-striped">
+    <table class="table-striped z-depth-1" mdbTable>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Produto</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Quantidade</th>
-            <th scope="col" class="optionsTh">Opções</th>
+            <th scope="col" [mdbTableSort]="produtos" sortBy="id"># <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="produtos" sortBy="name">Produto <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="produtos" sortBy="description">Descrição <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="produtos" sortBy="quantity">Quantidade <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" ></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let produto of produtos">
             <th scope="row">{{produto.id}}</th>
-            <td>{{produto.name}}</td>
+            <td class="pesquisa">{{produto.name}}</td>
             <td>{{produto.description}}</td>
             <td>{{produto.quantity}}</td>
             <td class="options">
@@ -30,28 +34,28 @@
   </div>
 
   <div class="page" *ngIf="[type] == 'vendas'">
-    <table class="table table-striped">
+    <table class="table-striped z-depth-1" mdbTable>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Produto</th>
-            <th scope="col">Valor da Compra</th>
-            <th scope="col">Quantidade</th>
-            <th scope="col">Comprador</th>
-            <th scope="col">Data da Venda</th>
-            <th scope="col" class="optionsTh">Opções</th>
+            <th scope="col" [mdbTableSort]="vendas" sortBy="id"># <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="vendas" sortBy="product.name">Produto <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="vendas" sortBy="price">Valor da Compra <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="vendas" sortBy="quantity">Quantidade <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="vendas" sortBy="client_name">Comprador <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="vendas" sortBy="date">Data da Venda <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" ></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let venda of vendas">
             <th scope="row">{{venda.id}}</th>
-            <td>{{venda.product.name}}</td>
-            <td>{{venda.price}}</td>
+            <td class="pesquisa">{{venda.product.name}}</td>
+            <td>{{venda.price | currencyFormat}}</td>
             <td>{{venda.quantity}}</td>
             <td>{{venda.client_name}}</td>
-            <td>{{venda.date | date: "MM/dd/yy 'às' hh:mm:ss":"BRL"}}</td>
+            <td>{{venda.date | date: "dd/MM/yy 'às' HH:mm:ss":"BRL"}}</td>
             <td class="options">
-                <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
+                <!-- <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon> -->
                 <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(venda.id)"></mdb-icon>
             </td>
           </tr>
@@ -60,24 +64,24 @@
   </div>
 
   <div class="page" *ngIf="[type] == 'recebimentos'">
-    <table class="table table-striped">
+    <table class="table-striped z-depth-1" mdbTable>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Produto</th>
-            <th scope="col">Data do Recebimento</th>
-            <th scope="col">Quantidade</th>
-            <th scope="col" class="optionsTh">Opções</th>
+            <th scope="col" [mdbTableSort]="recebimentos" sortBy="id"># <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="recebimentos" sortBy="product.name">Produto <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="recebimentos" sortBy="date">Data do Recebimento <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="recebimentos" sortBy="quantity">Quantidade <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" ></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let recebimento of recebimentos">
             <th scope="row">{{recebimento.id}}</th>
-            <td>{{recebimento.product.name}}</td>
-            <td>{{recebimento.date | date: "MM/dd/yy 'às' hh:mm:ss":"BRL"}}</td>
+            <td class="pesquisa">{{recebimento.product.name}}</td>
+            <td>{{recebimento.date | date: "dd/MM/yy 'às' HH:mm:ss":"BRL"}}</td>
             <td>{{recebimento.quantity}}</td>
             <td class="options">
-                <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
+                <!-- <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon> -->
                 <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(recebimento.id)"></mdb-icon>
             </td>
           </tr>
@@ -86,27 +90,27 @@
   </div>
 
   <div class="page" *ngIf="[type] == 'usuarios'">
-    <table class="table table-striped">
+    <table class="table-striped z-depth-1" mdbTable>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Usuário</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Sobrenome</th>
-            <th scope="col">Email</th>
-            <th scope="col" class="optionsTh">Opções</th>
+            <th scope="col" [mdbTableSort]="usuarios" sortBy="id"># <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="usuarios" sortBy="username">Usuário <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="usuarios" sortBy="name">Nome <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="usuarios" sortBy="surname">Sobrenome <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="usuarios" sortBy="email">Email <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" ></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let usuario of usuarios">
             <th scope="row">{{usuario.id}}</th>
-            <td>{{usuario.username}}</td>
+            <td class="pesquisa">{{usuario.username}}</td>
             <td>{{usuario.name}}</td>
             <td>{{usuario.surname}}</td>
             <td>{{usuario.email}}</td>
             <td class="options">
                 <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon>
-                <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(usuario.id)"></mdb-icon>
+                <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(usuario.id)" *ngIf="usuario.username != username"></mdb-icon>
             </td>
           </tr>
         </tbody>

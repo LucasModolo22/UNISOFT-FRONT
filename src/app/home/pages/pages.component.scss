@@ -1,14 +1,16 @@
 @import '../../../styles.scss';
 
-.search{
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-
 .buttonTop{
-    margin-bottom: 1%;
     text-transform: capitalize;
     font-weight: bold;
+}
+
+.form-control{
+    padding-left: 0;
+    padding-right: 0;
+    &:focus{
+        background: transparent;
+    }
 }
 
 table{
@@ -17,8 +19,10 @@ table{
         background: $c-secondary !important;
     }
 
-    .optionsTh{
-        text-align: center;
+    th{
+        .icon{
+            cursor: pointer;
+        }
     }
 
     .options{

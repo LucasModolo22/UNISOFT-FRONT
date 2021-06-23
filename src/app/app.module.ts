@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { EditComponent } from './home/pages/edit/edit.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './_services/interceptor/httpLoading.service';
 import { DatePipe } from '@angular/common';
+import { CurrencyFormatPipe } from './currencyformat/currency-format.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DatePipe } from '@angular/common';
     LoginComponent,
     HomeComponent,
     PagesComponent,
-    EditComponent
+    EditComponent,
+    CurrencyFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -29,14 +31,13 @@ import { DatePipe } from '@angular/common';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    
+    HttpClientModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
-      multi: true
+      multi: true,
     },
     DatePipe
   ],

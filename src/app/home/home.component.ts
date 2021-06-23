@@ -12,6 +12,8 @@ import { AuthService } from '../_services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
+  username: string
+
   type: string
   produtos: boolean = false
   vendas: boolean = false
@@ -20,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthService,) {
     route.params.subscribe(params => {
+      this.username = localStorage.getItem('username');
       this.type = params['page'];
       this.changeActive()
     });

@@ -13,6 +13,7 @@ export class PagesComponent implements OnInit, OnChanges {
   @Input() type: string;
   typeCampo: string
   apiRota: string
+  username: string
 
   produtos = []
   vendas = []
@@ -55,7 +56,6 @@ export class PagesComponent implements OnInit, OnChanges {
         this.typeCampo = "venda"
         this.apiRota = "sale"
         this.loadVendas()
-        console.log(this.vendas)
         break;
       case "recebimentos":
         this.typeCampo = "recebimento"
@@ -68,9 +68,42 @@ export class PagesComponent implements OnInit, OnChanges {
         this.loadUsuarios()
         break;
     }
+    let searchElement: any = document.getElementById('search')
+    searchElement.value = '';
+    
   }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('currentUser')) return this.authService.logout()
+    this.username = localStorage.getItem('username');
+  }
+
+  search(event){
+    let domUsuarios = document.querySelectorAll('.pesquisa')
+    domUsuarios.forEach((element: HTMLElement ) => {
+      if(element.textContent.toLowerCase().search(event.target.value.toLowerCase()) < 0){
+        element.parentElement.style.display = 'none'
+      } else{
+        element.parentElement.style.display = ''
+      }
+    });
+  }
+
+  loadActual(){
+    switch (this.type) {
+      case "produtos":
+        this.loadProdutos()
+        break;
+      case "vendas":
+        this.loadVendas()
+        break;
+      case "recebimentos":
+        this.loadRecebimentos()
+        break;
+      case "usuarios":
+        this.loadUsuarios()
+        break;
+    }
   }
 
   deletar(id: any): void {
@@ -89,7 +122,11 @@ export class PagesComponent implements OnInit, OnChanges {
           'Deletado!',
           'Seu item foi deletado.',
           'success'
-        )
+        ).then((result) => {
+          if(result.isConfirmed){
+            this.loadActual()
+          }
+        })
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalOpcoes.fire(
           'Cancelado!',
@@ -116,9 +153,7 @@ export class PagesComponent implements OnInit, OnChanges {
   }
 
   deleteItem(id){
-    this.pagesService.deleteItem(id, this.apiRota).subscribe(data => {
-     console.log(data)
-    })
+    this.pagesService.deleteItem(id, this.apiRota).subscribe()
   }
 
   loadProdutos(){
