@@ -46,7 +46,7 @@ export class EditVendasComponent implements OnInit {
       this.pageComponent.vendas.push(data)
       this.pageComponent.swalToast.fire({
         icon: 'success',
-        title: 'Recebimento adicionado com sucesso!'
+        title: 'Venda adicionada com sucesso!'
       })
       this.cancelar()
     })

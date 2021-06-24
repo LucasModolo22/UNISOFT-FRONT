@@ -114,7 +114,7 @@ export class PagesComponent implements OnInit, OnChanges {
   deletar(id: any): void {
     this.swalOpcoes.fire({
       title: 'Tem certeza?',
-      text: "Você não vai poder reverter isso!",
+      text: "Você não poderá reverter isso!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sim, deletar isso!',
