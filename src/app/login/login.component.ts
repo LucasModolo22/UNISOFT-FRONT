@@ -23,12 +23,14 @@ export class LoginComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    this.authenticationService.isLogged()
   }
 
   get username() { return this.validationForm.get('username'); }
   get pwd() { return this.validationForm.get('pwd'); }
 
   login(){
+    this.validationForm.markAllAsTouched()
     if (this.validationForm.invalid) {
       Swal.fire("ERRO!", "Preencha todos os campos com informações válidas.", "error")
     }

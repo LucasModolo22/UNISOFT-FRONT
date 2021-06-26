@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { PagesComponent } from '../../pages.component';
 import { EditService } from '../edit.service';
 
@@ -14,11 +15,11 @@ export class EditUsuariosComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private editService: EditService, private pageComponent: PagesComponent) {
     this.form = this.fb.group({
-      username: [null],
-      name: [null],
-      surname: [null],
-      email: [null],
-      pwd: [null]
+      username: [null, [Validators.required]],
+      name: [null, [Validators.required]],
+      surname: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      pwd: [null, [Validators.required, Validators.minLength(8)]]
     });
    }
 
@@ -26,7 +27,20 @@ export class EditUsuariosComponent implements OnInit {
   }
 
   salvar(){
-    this.createUsuario(this.form.value)
+    this.form.markAllAsTouched()
+    if(this.form.valid){
+      this.createUsuario(this.form.value)
+    } else{
+      this.erroForm()
+    }
+  }
+
+  erroForm(){
+    Swal.fire(
+      'Campos Inválidos!',
+      'Insira os dados corretamente.',
+      'error'
+    )
   }
 
   cancelar(){

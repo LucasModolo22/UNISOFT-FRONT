@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MyValidators } from 'src/app/validators/myvalidators.directive';
+import Swal from 'sweetalert2';
 import { PagesComponent } from '../../pages.component';
 import { EditService } from '../edit.service';
 
@@ -14,17 +16,34 @@ export class EditProdutosComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private editService: EditService, private pageComponent: PagesComponent) {
     this.form = this.fb.group({
-      name: [null],
+      name: [null, [Validators.required]],
       description: [null],
-      quantity: [null],
+      quantity: [null, [Validators.required, MyValidators.numeroMaiorIgualAZero, MyValidators.numeroInteiro]],
     });
    }
 
   ngOnInit(): void {
   }
 
+  get name() { return this.form.get('name'); }
+  get description() { return this.form.get('description'); }
+  get quantity() { return this.form.get('quantity'); }
+
   salvar(){
-    this.createProduto(this.form.value)
+    this.form.markAllAsTouched()
+    if(this.form.valid){
+      this.createProduto(this.form.value)
+    } else{
+      this.erroForm()
+    }
+  }
+
+  erroForm(){
+    Swal.fire(
+      'Campos Inválidos!',
+      'Insira os dados corretamente.',
+      'error'
+    )
   }
 
   cancelar(){

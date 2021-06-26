@@ -1,24 +1,31 @@
-<form [formGroup]="form">
-  <div class="form-group">
+<form [formGroup]="form" class="form">
 
+  <div class="inputsForm">
     <label for="product">Produto</label>
-    <select class="form-control" id="product" formControlName="product">
+    <select class="custom-select" id="product" formControlName="product" mdbValidate for="product">
       <option *ngFor="let produto of produtos" value="{{produto.id}}">{{produto.name}}</option>
     </select>
-
-    <label for="quantity">Quantidade</label>
-    <input formControlName="quantity" number="number" class="form-control" id="quantity">
-
-    <label for="client_name">Nome do Cliente</label>
-    <input formControlName="client_name" number="text" class="form-control" id="client_name">
-
-    <label for="price">Valor Total da Venda</label>
-    <input formControlName="price" number="text" class="form-control" id="price" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
-
-    <div class="buttonForm">
-      <button mdbBtn type="button" color="success" (click)="salvar()">Salvar</button>
-      <button mdbBtn type="button" color="danger" (click)="cancelar()">Cancelar</button>
+  
+    <div class="md-form">
+      <label for="client_name">Nome do Cliente</label>
+      <input mdbInput mdbValidate formControlName="client_name" type="text" class="form-control" id="client_name">
     </div>
-
+  
+    <div class="md-form">
+      <label for="quantity">Quantidade</label>
+      <input mdbInput mdbValidate formControlName="quantity" type="number" class="form-control" id="quantity">
+    </div>
+  
+  
+    <div class="md-form">
+      <label for="price">Valor Total da Venda</label>
+      <input mdbInput mdbValidate formControlName="price" type="text" class="form-control" id="price" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" autocomplete="off">
+    </div>
   </div>
+
+  <div class="buttonForm">
+    <button mdbBtn type="button" color="success" (click)="salvar()">Salvar</button>
+    <button mdbBtn type="button" color="danger" (click)="cancelar()">Cancelar</button>
+  </div>
+
 </form>

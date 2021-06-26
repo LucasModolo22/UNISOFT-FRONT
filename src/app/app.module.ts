@@ -18,6 +18,7 @@ import { EditVendasComponent } from './home/pages/edit/vendas/edit.component';
 import { EditRecebimentosComponent } from './home/pages/edit/recebimentos/edit.component';
 import { EditUsuariosComponent } from './home/pages/edit/usuarios/edit.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { MyValidators } from './validators/myvalidators.directive';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     EditProdutosComponent,
     EditVendasComponent,
     EditRecebimentosComponent,
-    EditUsuariosComponent
+    EditUsuariosComponent,
+    MyValidators
   ],
   imports: [
     BrowserModule,

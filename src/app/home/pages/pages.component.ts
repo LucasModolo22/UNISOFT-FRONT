@@ -143,6 +143,7 @@ export class PagesComponent implements OnInit, OnChanges {
   }
 
   adicionar(){
+    this.verificarModalAberto()
     switch (this.type) {
       case "produtos":
         this.produtoJanela = true
@@ -206,6 +207,13 @@ export class PagesComponent implements OnInit, OnChanges {
       }
     })
   }
-  
 
+  verificarModalAberto(){
+    if(this.produtoJanela || this.vendaJanela || this.recebimentoJanela || this.usuarioJanela){
+      this.produtoJanela = false
+      this.vendaJanela = false
+      this.recebimentoJanela = false
+      this.usuarioJanela = false
+    }
+  }
 }

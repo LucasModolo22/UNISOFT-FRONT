@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MyValidators } from 'src/app/validators/myvalidators.directive';
+import Swal from 'sweetalert2';
 import { PagesComponent } from '../../pages.component';
 import { EditService } from '../edit.service';
 
@@ -15,8 +17,8 @@ export class EditRecebimentosComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private editService: EditService, private pageComponent: PagesComponent) {
     this.form = this.fb.group({
-      product: [null],
-      quantity: [null],
+      product: [null, [Validators.required]],
+      quantity: [null, [Validators.required, MyValidators.numeroMaiorQueZero, MyValidators.numeroInteiro]],
     });
    }
 
@@ -31,7 +33,20 @@ export class EditRecebimentosComponent implements OnInit {
   }
 
   salvar(){
-    this.createRecebimento(this.form.value)
+    this.form.markAllAsTouched()
+    if(this.form.valid){
+      this.createRecebimento(this.form.value)
+    } else{
+      this.erroForm()
+    }
+  }
+
+  erroForm(){
+    Swal.fire(
+      'Campos Inválidos!',
+      'Insira os dados corretamente.',
+      'error'
+    )
   }
 
   cancelar(){

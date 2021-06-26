@@ -2,10 +2,10 @@
 
   <button type="button" class="buttonTop btn btn-success" (click)="adicionar()"><mdb-icon fas icon="plus" class="prefix icon"></mdb-icon> Adicionar {{typeCampo}}</button>
 
-  <app-edit-produtos class="janela produtos animate__animated animate__zoomIn" *ngIf="produtoJanela"></app-edit-produtos>
-  <app-edit-vendas class="janela vendas animate__animated animate__zoomIn" *ngIf="vendaJanela"></app-edit-vendas>
-  <app-edit-recebimentos class="janela recebimentos animate__animated animate__zoomIn" *ngIf="recebimentoJanela"></app-edit-recebimentos>
-  <app-edit-usuarios class="janela usuarios animate__animated animate__zoomIn" *ngIf="usuarioJanela"></app-edit-usuarios>
+  <app-edit-produtos class="janela produtos animate__animated animate__fadeInDown animate__faster" *ngIf="produtoJanela"></app-edit-produtos>
+  <app-edit-vendas class="janela vendas animate__animated animate__fadeInDown animate__faster" *ngIf="vendaJanela"></app-edit-vendas>
+  <app-edit-recebimentos class="janela recebimentos animate__animated animate__fadeInDown animate__faster" *ngIf="recebimentoJanela"></app-edit-recebimentos>
+  <app-edit-usuarios class="janela usuarios animate__animated animate__fadeInDown animate__faster" *ngIf="usuarioJanela"></app-edit-usuarios>
 
   <div class="md-form">
     <input type="text" (input)="search($event)" class="form-control" id="search" mdbInput/>
