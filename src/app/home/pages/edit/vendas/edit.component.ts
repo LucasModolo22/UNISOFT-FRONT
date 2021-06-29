@@ -57,11 +57,6 @@ export class EditVendasComponent implements OnInit {
             'Vendido!',
             'Seu produto foi vendido.',
             'success'
-          // ).then((result) => {
-          //   if(result.isConfirmed){
-          //     this.cancelar()
-          //   }
-          // }
           )
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           this.pageComponent.swalOpcoes.fire(

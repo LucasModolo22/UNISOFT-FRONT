@@ -35,7 +35,30 @@ export class EditRecebimentosComponent implements OnInit {
   salvar(){
     this.form.markAllAsTouched()
     if(this.form.valid){
-      this.createRecebimento(this.form.value)
+      this.pageComponent.swalOpcoes.fire({
+        title: 'Tem certeza?',
+        text: "Você só poderá reverter isso excluindo e adicionando um noov recebimento.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, salvar!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.createRecebimento(this.form.value)
+          this.pageComponent.swalOpcoes.fire(
+            'Salvo!',
+            'Seu recebimento foi registrado',
+            'success'
+          )
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          this.pageComponent.swalOpcoes.fire(
+            'Cancelado!',
+            'Seu recebimento não foi registrado',
+            'error'
+          )
+        }
+      })
     } else{
       this.erroForm()
     }
