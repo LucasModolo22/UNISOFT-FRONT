@@ -41,15 +41,13 @@ export class EditVendasComponent implements OnInit {
   get price() { return this.form.get('price'); }
   get client_name() { return this.form.get('client_name'); }
 
-  addNewField(i) {
-    if((this.products as FormArray).at(i).invalid == false) {
-      (this.products as FormArray).push(
-        new FormGroup({
-          product: new FormControl(''),
-          quantity : new FormControl(0)
-        })
-      )
-    }
+  addNewField() {
+    (this.products as FormArray).push(
+      new FormGroup({
+        product: new FormControl(''),
+        quantity : new FormControl(0)
+      })
+    )
   }
 
   getProdutos(){

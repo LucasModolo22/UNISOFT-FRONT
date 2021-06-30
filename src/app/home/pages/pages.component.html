@@ -20,6 +20,7 @@
             <th scope="col" [mdbTableSort]="produtos" sortBy="name">Produto <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
             <th scope="col" [mdbTableSort]="produtos" sortBy="description">Descrição <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
             <th scope="col" [mdbTableSort]="produtos" sortBy="quantity">Quantidade <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
+            <th scope="col" [mdbTableSort]="produtos" sortBy="price">Preço <mdb-icon fas icon="sort" class="prefix icon"></mdb-icon></th>
             <th scope="col" ></th>
           </tr>
         </thead>
@@ -29,6 +30,7 @@
             <td class="pesquisa">{{produto.name}}</td>
             <td>{{produto.description}}</td>
             <td>{{produto.quantity}}</td>
+            <td>{{produto.price | currencyFormat}}</td>
             <td class="options">
                 <!-- <mdb-icon fas icon="pen" class="prefix icon edit"></mdb-icon> -->
                 <mdb-icon fas icon="times" class="prefix icon remove" (click)="deletar(produto.id)"></mdb-icon>
