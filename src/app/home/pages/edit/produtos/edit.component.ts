@@ -18,6 +18,7 @@ export class EditProdutosComponent implements OnInit {
     this.form = this.fb.group({
       name: [null, [Validators.required]],
       description: [null],
+      price: [null],
       quantity: [null, [Validators.required, MyValidators.numeroMaiorIgualAZero, MyValidators.numeroInteiro]],
     });
    }
