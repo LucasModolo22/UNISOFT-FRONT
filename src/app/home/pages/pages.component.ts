@@ -111,6 +111,34 @@ export class PagesComponent implements OnInit, OnChanges {
     }
   }
 
+  showRecebimento(recebimento: any) : void {
+    let text = ``;
+    recebimento.products.forEach((ps) => { 
+      text += `Produto: ${ps.product.name} - Quantidade: ${ps.quantity}</br>`
+    })
+    this.swalOpcoes.fire({
+      title: `Recebimento #${recebimento.id}`,
+      showCancelButton: false,
+      html: text,
+      confirmButtonText: 'Fechar'
+    })
+  }
+
+  showVenda(venda: any) : void {
+    let text = ``;
+    text += `Preço: R$ ${venda.price}</br>`;
+    text += `Cliente: ${venda.client_name}</br>`;
+    venda.products.forEach((ps) => { 
+      text += `Produto: ${ps.product.name} - Quantidade: ${ps.quantity}</br>`
+    })
+    this.swalOpcoes.fire({
+      title: `Venda #${venda.id}`,
+      showCancelButton: false,
+      html: text,
+      confirmButtonText: 'Fechar'
+    })
+  }
+
   deletar(id: any): void {
     this.swalOpcoes.fire({
       title: 'Tem certeza?',
