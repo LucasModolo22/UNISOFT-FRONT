@@ -18,6 +18,8 @@ export class EditUsuariosComponent implements OnInit {
       username: [null, [Validators.required]],
       name: [null, [Validators.required]],
       surname: [null, [Validators.required]],
+      address: [null, [Validators.required]],
+      cpf: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
       pwd: [null, [Validators.required, Validators.minLength(8)]]
     });
