@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { MyValidators } from 'src/app/validators/myvalidators.directive';
 import Swal from 'sweetalert2';
 import { PagesComponent } from '../../pages.component';
@@ -17,8 +17,12 @@ export class EditRecebimentosComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private editService: EditService, private pageComponent: PagesComponent) {
     this.form = this.fb.group({
-      product: [null, [Validators.required]],
-      quantity: [null, [Validators.required, MyValidators.numeroMaiorQueZero, MyValidators.numeroInteiro]],
+      products: new FormArray([
+        new FormGroup({
+          product: new FormControl('', [Validators.required]),
+          quantity : new FormControl(0, [Validators.required])
+        })
+      ]),
     });
    }
 
@@ -64,6 +68,19 @@ export class EditRecebimentosComponent implements OnInit {
     }
   }
 
+  get products() { return this.form.get('products'); }
+
+  addNewField(i) {
+    if((this.products as FormArray).at(i).invalid == false) {
+      (this.products as FormArray).push(
+        new FormGroup({
+          product: new FormControl(''),
+          quantity : new FormControl(0)
+        })
+      )
+    }
+  }
+
   erroForm(){
     Swal.fire(
       'Campos Inválidos!',
@@ -78,6 +95,11 @@ export class EditRecebimentosComponent implements OnInit {
   }
 
   createRecebimento(data){
+    data.user = Number(JSON.parse(localStorage.getItem("user")).id)
+    data.products.forEach((ps, i) => {
+      ps.product = { id : Number(ps.product)}
+    })
+    data.products = data.products.filter((ele : any) => { return ele.product.id != 0 });
     this.editService.createRecebimento(data).subscribe(data => {
       this.pageComponent.recebimentos.push(data)
       this.pageComponent.swalToast.fire({

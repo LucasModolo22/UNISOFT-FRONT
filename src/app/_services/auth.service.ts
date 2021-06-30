@@ -18,14 +18,16 @@ export class AuthService {
       this.http.post<any>(`${environment.apiUrl}/user/login`, login).subscribe(data => {
         localStorage.setItem('currentUser', data.token)
         localStorage.setItem("username", data.result.username)
+        localStorage.setItem("user", JSON.stringify(data.result))
         this.router.navigate(['/home'])
         return
       })
-  }
-
-  logout() {
-    localStorage.removeItem("currentUser");
-    localStorage.removeItem("username");
+    }
+    
+    logout() {
+      localStorage.removeItem("currentUser");
+      localStorage.removeItem("username");
+      localStorage.removeItem("user")
     localStorage.clear();
     this.router.navigate(['/'])
   }

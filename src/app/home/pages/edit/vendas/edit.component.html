@@ -1,20 +1,34 @@
 <form [formGroup]="form" class="form">
 
   <div class="inputsForm">
-    <label for="product">Produto</label>
-    <select class="custom-select" id="product" formControlName="product" mdbValidate for="product">
+    <!-- <label for="product">Produto</label>
+    
+    <select (change)="addNewField()" class="custom-select" id="product" [formControl]="firstProduct" mdbValidate for="product">
       <option *ngFor="let produto of produtos" value="{{produto.id}}">{{produto.name}}</option>
     </select>
+    
+    <div class="md-form">
+      <label for="quantity">Quantidade</label>
+      <input (change)="addNewField()" mdbInput mdbValidate [formControl]="firstQuantity" type="number" class="form-control" id="quantity">
+    </div> -->
+    
+    <div formArrayName="products" class="mb-1" *ngFor="let child of products.value; let i=index">
+      <div formGroupName="{{i}}">
+        <label for="product">Produto</label>
+        <select (change)="addNewField(i)" class="custom-select" formControlName="product" mdbValidate for="product">
+          <option *ngFor="let produto of produtos" value="{{produto.id}}">{{produto.name}}</option>
+        </select>
+    
+          <label for="quantity">Quantidade</label>
+          <input for="quantity" style="padding: 0 .7em;" formControlName="quantity" type="number" class="form-control">
+      </div>
+    </div>
   
     <div class="md-form">
       <label for="client_name">Nome do Cliente</label>
       <input mdbInput mdbValidate formControlName="client_name" type="text" class="form-control" id="client_name">
     </div>
   
-    <div class="md-form">
-      <label for="quantity">Quantidade</label>
-      <input mdbInput mdbValidate formControlName="quantity" type="number" class="form-control" id="quantity">
-    </div>
   
   
     <div class="md-form">
