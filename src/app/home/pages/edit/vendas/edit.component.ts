@@ -24,7 +24,7 @@ export class EditVendasComponent implements OnInit {
           quantity : new FormControl(0, [Validators.required])
         })
       ]),
-      price: [null, [Validators.required, MyValidators.numeroMaiorQueZero]],
+      // price: [null, [Validators.required, MyValidators.numeroMaiorQueZero]],
       client_name: [null, [Validators.required]],
     });
    }
@@ -108,9 +108,17 @@ export class EditVendasComponent implements OnInit {
 
   createVenda(data){
     data.user = Number(JSON.parse(localStorage.getItem("user")).id)
+    let price = 0;
     data.products.forEach((ps, i) => {
       ps.product = { id : Number(ps.product)}
+      this.produtos.forEach((product : any) => {
+        if(product.id == ps.product.id) {
+          price += product.price * ps.quantity
+        }
+      })
     })
+    console.log(price)
+    data.price = price;
     data.products = data.products.filter((ele : any) => { return ele.product.id != 0 });
     this.editService.createVenda(data).subscribe(data => {
       this.pageComponent.vendas.push(data)
