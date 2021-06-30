@@ -49,6 +49,7 @@ export class EditUsuariosComponent implements OnInit {
   }
 
   createUsuario(data){
+    data.birth_date = new Date()
     this.editService.createUsuario(data).subscribe(data => {
       this.pageComponent.usuarios.push(data)
       this.pageComponent.swalToast.fire({
